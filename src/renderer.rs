@@ -7,16 +7,16 @@ use crate::camera::Camera;
 use crate::integrator::Integrator;
 use crate::material::Material;
 use crate::shape::Shape;
-use crate::media::Media;
+use crate::medium::Medium;
 use crate::env_map::EnvMap;
 
 pub struct Renderer {
     camera: Arc<Camera>,
     integrator: Arc<Integrator>,
     env_map: Option<Arc<EnvMap>>,
-    shapes: Vec<Arc<dyn Shape>>,
+    shapes: Vec<Arc<Shape>>,
     materials: Vec<Arc<dyn Material>>,
-    medias: Vec<Arc<dyn Media>>,
+    medias: Vec<Arc<dyn Medium>>,
 }
 
 impl Renderer {

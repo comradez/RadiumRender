@@ -8,8 +8,12 @@ mod camera;
 mod integrator;
 mod shape;
 mod material;
-mod media;
+mod medium;
 mod env_map;
+mod ray;
+mod utils;
+mod intersection;
+mod acceleration;
 
 use scene_parser::{SceneParser, ParseScene};
 

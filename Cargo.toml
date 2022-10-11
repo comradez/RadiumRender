@@ -9,3 +9,4 @@ edition = "2021"
 clap = { version = "4.0.12", features = ["derive"] }
 log = "0.4.17"
 anyhow = "1"
+vecmat = "0.7.8"
