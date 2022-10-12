@@ -8,7 +8,7 @@ pub struct Rectangle {
 }
 
 impl IntersectWithRay for Rectangle {
-    fn intersect(&self, ray: &Ray, t_min: f64) -> Option<Intersection> {
+    fn intersect(&self, ray: &Ray, t_min: f64) -> Intersection {
         todo!()
     }
 }

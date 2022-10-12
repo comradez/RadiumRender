@@ -227,6 +227,7 @@ dependencies = [
  "anyhow",
  "clap",
  "log",
+ "rand",
  "vecmat",
 ]
 

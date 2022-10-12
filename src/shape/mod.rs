@@ -23,7 +23,7 @@ use cube::Cube;
 use mesh::Mesh;
 
 pub trait IntersectWithRay {
-    fn intersect(&self, ray: &Ray, t_min: f64) -> Option<Intersection>;
+    fn intersect(&self, ray: &Ray, t_min: f64) -> Intersection;
 }
 
 pub struct Shape {
@@ -33,8 +33,8 @@ pub struct Shape {
     pub material: Arc<dyn Material>,
     pub interior_medium: Arc<dyn Medium>,
     pub exterior_medium: Arc<dyn Medium>,
-    pub to_world: Matrix4,
-    pub to_object: Matrix4,
+    pub to_world: Option<Matrix4>,
+    pub to_object: Option<Matrix4>,
     pub inner: ShapeUnified,
 }
 
@@ -54,11 +54,29 @@ impl Shape {
 }
 
 impl IntersectWithRay for Shape {
-    fn intersect(&self, ray: &Ray, t_min: f64) -> Option<Intersection> {
+    fn intersect(&self, ray: &Ray, t_min: f64) -> Intersection {
         match &self.inner {
-            ShapeUnified::Sphere(sphere) => sphere.intersect(ray, t_min),
+            ShapeUnified::Sphere(sphere) => sphere.intersect(
+                ray,
+                t_min,
+                self.material.clone(),
+                self.interior_medium.clone(),
+                self.exterior_medium.clone(),
+                &self.to_world,
+                &self.to_object,
+                self.flip_normal,
+            ),
             ShapeUnified::Disk(disk) => disk.intersect(ray, t_min),
-            ShapeUnified::Triangle(triangle) => triangle.intersect(ray, t_min),
+            ShapeUnified::Triangle(triangle) => triangle.intersect(
+                ray,
+                t_min,
+                self.material.clone(),
+                self.interior_medium.clone(),
+                self.exterior_medium.clone(),
+                &self.to_world,
+                &self.to_object,
+                self.flip_normal,
+            ),
             ShapeUnified::Rectangle(rectangle) => rectangle.intersect(ray, t_min),
             ShapeUnified::Cube(cube) => cube.intersect(ray, t_min),
             ShapeUnified::Mesh(mesh) => mesh.intersect(ray, t_min),

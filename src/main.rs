@@ -1,3 +1,8 @@
+#![allow(dead_code)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+// There are way too many warnings during the development, and I got tired of them.
+// Will be removed after major development is done.
 use std::{path::PathBuf, fs::File};
 use clap::Parser;
 use anyhow::Result;

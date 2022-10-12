@@ -8,7 +8,7 @@ pub struct Mesh {
 }
 
 impl IntersectWithRay for Mesh {
-    fn intersect(&self, ray: &Ray, t_min: f64) -> Option<Intersection> {
+    fn intersect(&self, ray: &Ray, t_min: f64) -> Intersection {
         todo!()
     }
 }

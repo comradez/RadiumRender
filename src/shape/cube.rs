@@ -8,7 +8,7 @@ pub struct Cube {
 }
 
 impl IntersectWithRay for Cube {
-    fn intersect(&self, ray: &Ray, t_min: f64) -> Option<Intersection> {
+    fn intersect(&self, ray: &Ray, t_min: f64) -> Intersection {
         todo!()
     }
 }
